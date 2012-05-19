@@ -10,6 +10,7 @@ import org.lwjgl.util.vector.Vector3f;
 import com.bulletphysics.*;
 import com.bulletphysics.collision.shapes.*;
 import com.bulletphysics.dynamics.*;
+import com.bulletphysics.linearmath.*;
 
 /**
  * This is a simple test model created by hand for testing purposes.
@@ -39,6 +40,9 @@ public class Cube implements iCollidable, iWorldObject {
 	
 	int vboid;
 	
+	
+	float mass = 5;
+	
 	Vector3f heading = new Vector3f();
 	float speed = 0;
 	float acceleration = Float.NaN;
@@ -47,11 +51,13 @@ public class Cube implements iCollidable, iWorldObject {
 	float[] vbo_color_data;
 	
 	CollisionShape cshape;
+	
+	
 	RigidBody body;
 	
 	public Cube(float x, float y, float z, float width, float height,
 			float depth) {
-		// empty for now
+		// empty for now, bitch
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -135,6 +141,8 @@ public class Cube implements iCollidable, iWorldObject {
 				1f,1f,1f,0f,
 			};
 		createVBO();
+		// Still broken somehow
+		body = new RigidBody(new RigidBodyConstructionInfo(mass, new CustomMotionState() , cshape));
 		//cshape = new BoxShape(new Vector3f(width, height, depth));
 	}
 	

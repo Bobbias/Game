@@ -7,6 +7,8 @@ package Shooter;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import javax.vecmath.Vector3f;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.*;
@@ -253,7 +255,7 @@ public class ShooterGame {
 					break;
 				if (o.getInternalType() == CollisionObjectType.RIGID_BODY)
 				{
-					//wat
+					((RigidBody)o).applyForce(new Vector3f(10,0,0), new Vector3f(0,0,0));
 				}
 			}
 			

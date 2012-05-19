@@ -6,7 +6,7 @@ import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.dynamics.*;
 
 public class World {
-	CollisionShape c_shape;
+	
 	LinkedList<iWorldObject> objects;
 	
 	public void addObject(iWorldObject obj)

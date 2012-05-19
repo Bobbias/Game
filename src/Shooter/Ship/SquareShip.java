@@ -6,6 +6,8 @@ import Shooter.Player;
 
 public class SquareShip implements iPlayerShip {
 
+	LinkedList<iShipComponent> Components;
+	
 	@Override
 	public void CalcAcceleration() {
 		// TODO Auto-generated method stub
@@ -20,8 +22,7 @@ public class SquareShip implements iPlayerShip {
 
 	@Override
 	public LinkedList<iShipComponent> GetComponents() {
-		return null;
-
+		return Components;
 	}
 
 	@Override
@@ -31,8 +32,15 @@ public class SquareShip implements iPlayerShip {
 
 	@Override
 	public LinkedList<iShipWeapon> GetWeapons() {
-		return null;
-
+		LinkedList<iShipWeapon> ret = new LinkedList<iShipWeapon>();
+		for (iShipComponent i : Components)
+		{
+			if (i instanceof iShipWeapon)
+			{
+				ret.add((iShipWeapon) i);
+			}
+		}
+		return ret;
 	}
 
 	@Override
