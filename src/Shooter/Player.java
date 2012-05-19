@@ -2,7 +2,7 @@ package Shooter;
 
 import Shooter.Ship.*;
 
-public class Player {
+public class Player implements iControllable{
 
 	private Camera camera;
 	private iPlayerShip ship;
