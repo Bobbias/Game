@@ -1,0 +1,10 @@
+Notes:
+
+1: vector cross products are important.
+for strafing: cross product of forward and up vectors (z and y vectors respectively)
+
+x and z coordinates are on a y plane...
+
+given a speed in 3 dimensions, dot product can mask movement in directions:
+vec(x,y,z) .* vec(0,1,0) produces only movement on the y axis
+

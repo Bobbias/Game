@@ -1,0 +1,39 @@
+-----------------------------
+Design ideas for ShooterGame
+-----------------------------
+
+Vertical shooter (see space invaders etc.)
+
+Uses primarily untextured (or heavily pixelated textures) fairly primitive shapes for ships.
+Uses simple background for now (simply star field texture with some added stuff maybe)
+
+
+Pilot leveling scheme?
+Could be used to create progression, unlock new hulls, new weapon types, etc.
+
+Ships:
+Based off a hull shape design
+Contain attachment points for various piece of hardware
+May be customized fairly heavily (maybe)
+Require reseources to unlock things
+Have finite resources on board (to limit certain configurations etc.)
+
+Attachments (tentative)
+Weapons
+Shields
+Armor
+Thrusters (?)
+Turrets*
+Enhancement modules
+
+Weapons:
+Laser
+Plasma
+Missile
+Other (?)
+
+Shields:
+High capacity
+Fast Recharge
+Enhanced Resistance* (as a varient of the others)
+
