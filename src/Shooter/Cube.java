@@ -3,10 +3,9 @@ package Shooter;
 import static org.lwjgl.opengl.GL11.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import javax.vecmath.Quat4d;
+import javax.vecmath.*;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
-import org.lwjgl.util.vector.Vector3f;
 import com.bulletphysics.*;
 import com.bulletphysics.collision.shapes.*;
 import com.bulletphysics.dynamics.*;
@@ -34,16 +33,13 @@ public class Cube implements iCollidable, iWorldObject {
 	float top;
 	float width;
 	Vector3f center;
-	float x;
-	float y;
-	float z;
 	
 	int vboid;
 	
 	
 	float mass = 5;
 	
-	Vector3f heading = new Vector3f();
+	Quat4d heading = new Quat4d();
 	float speed = 0;
 	float acceleration = Float.NaN;
 	
@@ -55,22 +51,21 @@ public class Cube implements iCollidable, iWorldObject {
 	
 	RigidBody body;
 	
-	public Cube(float x, float y, float z, float width, float height,
+	public Cube(Vector3f pos, float width, float height,
 			float depth) {
 		// empty for now, bitch
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		center = new Vector3f(x,y,z);
+		this.center.x = pos.x;
+		this.center.y = pos.y;
+		this.center.z = pos.z;
 		this.height = height;
 		this.width = width;
 		this.depth = depth;
-		top = y + (height / 2);
-		bottom = y - (height / 2);
-		left = x - (width / 2);
-		right = x + (width / 2);
-		front = z + (depth / 2);
-		back = z - (depth / 2);
+		top = pos.y + (height / 2);
+		bottom = pos.y - (height / 2);
+		left = pos.x - (width / 2);
+		right = pos.x + (width / 2);
+		front = pos.z + (depth / 2);
+		back = pos.z - (depth / 2);
 		vbo_vertex_data = new float[] {
 			/*
 			 *  X,    Y,     Z
@@ -141,8 +136,11 @@ public class Cube implements iCollidable, iWorldObject {
 				1f,1f,1f,0f,
 			};
 		createVBO();
+		// identity heading
+		Matrix4d m1 = new Matrix4d(1d,0d,0d,0d,0d,1d,0d,0d,0d,0d,1d,0d,0d,0d,0d,1d);
+		heading.set(m1);
 		// Still broken somehow
-		body = new RigidBody(new RigidBodyConstructionInfo(mass, new CustomMotionState() , cshape));
+		//body = new RigidBody(new RigidBodyConstructionInfo(mass, new CustomMotionState() , cshape));
 		//cshape = new BoxShape(new Vector3f(width, height, depth));
 	}
 	
@@ -217,9 +215,9 @@ public class Cube implements iCollidable, iWorldObject {
 		// currently the out-dated draw format.
 		//DrawObjectOld();
 		DrawObject();
-		float seconds = deltaTime/1000;
-		if (acceleration != Float.NaN)
-			speed = acceleration * seconds;
+		//float seconds = deltaTime/1000;
+		//if (acceleration != Float.NaN)
+		//	speed = acceleration * seconds;
 	}
 
 	@Override
@@ -272,6 +270,7 @@ public class Cube implements iCollidable, iWorldObject {
 			ARBVertexBufferObject.glBindBufferARB(ARBVertexBufferObject.GL_ARRAY_BUFFER_ARB, vboid);
 			glVertexPointer(3, GL_FLOAT, 0, 0);
 			glColorPointer(4, GL_FLOAT, 0, vbo_vertex_data.length*4);
+			GL11.glMultMatrix(new FloatBuffer());
 			GL11.glDrawArrays(GL_QUADS, 0, vbo_vertex_data.length);
 		}
 		catch (OpenGLException e)
@@ -312,16 +311,29 @@ public class Cube implements iCollidable, iWorldObject {
 	}
 
 	@Override
-	public void FacePoint(javax.vecmath.Vector3f point,
-			javax.vecmath.Vector3f Up) {
-		// TODO Auto-generated method stub
-		
+	public void FacePoint(Vector3f point, Vector3f Up)
+	{
+		Vector3f diff = new Vector3f();
+		diff.sub(position, point);
+		Vector3f Right = new Vector3f();
+		Right.cross(Up, diff);
+		Vector3f Backwards = new Vector3f();
+		Backwards.cross(Right, Up);
+		Vector3f NewUp = new Vector3f();
+		NewUp.cross(Backwards, Right);
+		Right.normalize();
+		Backwards.normalize();
+		NewUp.normalize();
+		Matrix4f rot = new Matrix4f(Right.x, Right.y, Right.z, 0, NewUp.x, NewUp.y, NewUp.z, 0, Backwards.x, Backwards.y, Backwards.z, 0, 0, 0, 0, 1);
+		Quat4d qrot = new Quat4d();
+		qrot.set(rot);
+		orientation.mul(qrot);
 	}
 
 	@Override
 	public void Rotate(Quat4d qu) {
 		// TODO Auto-generated method stub
-		
+		heading.mul(qu);
 	}
 
 }

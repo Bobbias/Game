@@ -10,7 +10,8 @@ import org.lwjgl.opengl.GLContext;
 //import org.lwjgl.util.vector.*;
 import javax.vecmath.*;
 import com.bulletphysics.*;
-import com.bulletphysics.collision.shapes.CollisionShape;
+import com.bulletphysics.collision.shapes.*;
+import com.bulletphysics.linearmath.*;
 
 public class Model implements iCollidable, iWorldObject {
 	// the vbo id for the model data
@@ -39,6 +40,13 @@ public class Model implements iCollidable, iWorldObject {
 	private float health;
 	private float max_health;
 	
+	private MotionState mstate;
+	
+	public Model()
+	{
+		mstate = new CustomMotionState();
+	}
+	
 	@Override
 	public void Rotate(Quat4d qu)
 	{
@@ -63,6 +71,8 @@ public class Model implements iCollidable, iWorldObject {
 		qrot.set(rot);
 		orientation.mul(qrot);
 	}
+	
+	
 	
 	@Override
 	public float getAcceleration() {

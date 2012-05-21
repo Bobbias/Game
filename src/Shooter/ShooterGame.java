@@ -231,7 +231,7 @@ public class ShooterGame {
 		
 		// initialize our timer
 		lastFrame = getTime();
-		Cube testcube = new Cube(0, 0, 0, 20f, 20f, 20f);
+		Cube testcube = new Cube(new Vector3f(0,0,0), 20f, 20f, 20f);
 		//add cube to list of collision objects
 		gamePhysics.ddw.addCollisionObject(testcube.body);
 		
@@ -248,21 +248,6 @@ public class ShooterGame {
 			pollInput();
 			// updates phyics then draws
 			testcube.UpdateObject(delta);
-			ObjectArrayList<CollisionObject> objects = gamePhysics.ddw.getCollisionObjectArray();
-			for (CollisionObject o : objects)
-			{
-				if (o == null)
-					break;
-				if (o.getInternalType() == CollisionObjectType.RIGID_BODY)
-				{
-					((RigidBody)o).applyForce(new Vector3f(10,0,0), new Vector3f(0,0,0));
-				}
-			}
-			
-			/*
-			glRotatef(mouseDX, 1, 0, 0);
-			glRotatef(-mouseDY, 0, 1, 0);
-			*/
 			// glEnable(GL_CULL_FACE);
 			Display.update();
 			mouseDX = 0;

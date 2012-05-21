@@ -24,3 +24,14 @@ Game Menu - Main menu system for the game
 Players also have individual states. Ex: When gamestate -> paused, all playerstates -> paused.
 
 * Console state.... Need to figure out how that will be structured.
+
+
+Bullet:
+	Shooter.Mesh
+		CollisionObject: is an object with world transform and a collision shape
+		CollisionShape
+		GhostObject: Special CollisionObject useful for fast localized collision Queries (how?)
+	Shooter.World
+		CollisionWorld: stores all collision objects and has an interface for queries
+		
+PersistentManifold is a contact point cache to store contact points for a given pair of objects.
