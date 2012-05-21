@@ -24,6 +24,12 @@ public class Player implements iControllable{
 	public void setCamera(Camera camera) {
 		this.camera = camera;
 	}
+
+	@Override
+	public void HandleInput(InputEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

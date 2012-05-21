@@ -36,6 +36,9 @@ public class Model implements iCollidable, iWorldObject {
 	
 	private CollisionShape cshape;
 	
+	private float health;
+	private float max_health;
+	
 	@Override
 	public void Rotate(Quat4d qu)
 	{
@@ -163,13 +166,13 @@ public class Model implements iCollidable, iWorldObject {
 	@Override
 	public void SetOrientation(Quat4d qu) {
 		// TODO Auto-generated method stub
-		
+		orientation = qu;
 	}
 
 	@Override
 	public void MoveObject(Vector3f loc) {
 		// TODO Auto-generated method stub
-		
+		position = loc;
 	}
 
 	@Override
