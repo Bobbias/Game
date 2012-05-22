@@ -20,6 +20,7 @@ public class KeyboardController implements iController{
 			InputEvent i = new InputEvent();
 			i.KeyCode = Keyboard.getEventKey();
 			i.keyState = Keyboard.getEventKeyState();
+			i.type = EventType.KEYBOARD_EVENT;
 			for (iControllable j : controllables)
 			{
 				j.HandleInput(i);
