@@ -8,15 +8,22 @@ public class KeyboardController implements iController{
 
 	ArrayList<iControllable> controllables;
 	
+	public KeyboardController()
+	{
+		controllables = new ArrayList<iControllable>();
+	}
+	
 	@Override
 	public void HandleInput() {
-		// TODO Auto-generated method stub
-		InputEvent i = new InputEvent();
-		i.KeyCode = Keyboard.getEventKey();
-		i.keyState = Keyboard.getEventKeyState();
-		for (iControllable j : controllables)
+		while (Keyboard.next())
 		{
-			j.HandleInput(i);
+			InputEvent i = new InputEvent();
+			i.KeyCode = Keyboard.getEventKey();
+			i.keyState = Keyboard.getEventKeyState();
+			for (iControllable j : controllables)
+			{
+				j.HandleInput(i);
+			}
 		}
 	}
 

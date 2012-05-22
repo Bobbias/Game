@@ -5,19 +5,21 @@ import java.util.ArrayList;
  * The InputManager is responsible for keeping track of every
  * object which is either controllable or a controller.
  * it is also responsible for polling every iController object. 
- * @author Bobbias@gmail.com
+ * @author Bobbias
  *
  */
 public class InputManager {
 	// maybe use Sets instead?
 	ArrayList<iController> controllers;
 	ArrayList<iControllable> controllables;
+	private static boolean exists = false;
 	/**
 	 * Creates an InputManager with a KeyboardController and MouseController
 	 * added the the iController ArrayList, and a empty iControllable ArrayList.
 	 */
-	public InputManager()
+	protected InputManager()
 	{
+		exists = true;
 		controllers = new ArrayList<iController>();
 		controllables = new ArrayList<iControllable>();
 		controllers.add(new KeyboardController());
@@ -35,5 +37,10 @@ public class InputManager {
 			c.HandleInput();
 		}
 	}
-	
+	public InputManager getInputManager()
+	{
+		if (exists)
+			return null;
+		return new InputManager();
+	}
 }

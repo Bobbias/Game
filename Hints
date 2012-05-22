@@ -17,9 +17,23 @@ These players pass their commands to whatever objects they may control.
 
 Game States:
 
-Paused - player has pause menu focused
+PauseMenu - player has pause menu focused
 Running - player has a pawn to control
-Game Menu - Main menu system for the game
+GameMenu - Main menu system for the game
+
+GameMenu GameState:
+When the game begins, it enters the game menu state. In this state as the init() is called, it sets up everything that must be set up before the main menu loop.
+This involves setting up the input manager to send keyboard and mouse input to the menu.
+It then enters the main loop for the menu. During this loop user input is used to move between the various menus for options etc.
+When the user chooses to begin the game, a new GameState is started: the Running GameState.
+
+Running GameState:
+init() is called. this sets up the world, create the player, etc. etc. etc.
+The the main loop is entered. This is the main game loop for most of the game. If the player pauses the game, the PauseMenu state is brought up.
+
+PauseMenu GameState:
+the init() is called. This creates a new menu object, removes focus from the player's ship and puts it on the new menu which will be rendered.
+It enters a main loop. When the player is finished there are two options: The game is ended, and the player is returned to a GameMenu state, or the game is resumed.
 
 Players also have individual states. Ex: When gamestate -> paused, all playerstates -> paused.
 

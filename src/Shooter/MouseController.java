@@ -8,6 +8,11 @@ public class MouseController implements iController {
 
 	ArrayList<iControllable> controllables;
 	
+	public MouseController()
+	{
+		controllables = new ArrayList<iControllable>();
+	}
+	
 	@Override
 	public void HandleInput() {
 		// TODO Auto-generated method stub

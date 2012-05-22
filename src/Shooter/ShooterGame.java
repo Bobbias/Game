@@ -31,6 +31,7 @@ public class ShooterGame {
 	}
 	
 	Physics gamePhysics;
+	InputManager im;
 	
 	int delta;
 	int fps;
@@ -214,6 +215,12 @@ public class ShooterGame {
 	 * Main game loop here
 	 */
 	public void start() {
+		im = new InputManager();
+		DummyControllable dummy = new DummyControllable();
+		for (iController i : im.controllers)
+		{
+			i.AttachControllable(dummy);
+		}
 		Mouse.setGrabbed(true);
 		try {
 			Display.setDisplayMode(new DisplayMode(800, 600));
@@ -233,7 +240,7 @@ public class ShooterGame {
 		lastFrame = getTime();
 		Cube testcube = new Cube(new Vector3f(0,0,0), 20f, 20f, 20f);
 		//add cube to list of collision objects
-		gamePhysics.ddw.addCollisionObject(testcube.body);
+		//gamePhysics.ddw.addCollisionObject(testcube.body);
 		
 		/*
 		 * Game loop. Inside this is where most of the game happens.
@@ -241,11 +248,12 @@ public class ShooterGame {
 		while (!Display.isCloseRequested()) {
 			delta = getDeltaTime();
 			//step physics based on how long has passed
-			gamePhysics.ddw.stepSimulation(delta/1000, 10);
+			//gamePhysics.ddw.stepSimulation(delta/1000, 10);
 			// render OpenGL here
 			// clear screen and depth buffer
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			pollInput();
+			//pollInput();
+			im.PollInput();
 			// updates phyics then draws
 			testcube.UpdateObject(delta);
 			// glEnable(GL_CULL_FACE);

@@ -51,12 +51,8 @@ public class Cube implements iCollidable, iWorldObject {
 	
 	RigidBody body;
 	
-	public Cube(Vector3f pos, float width, float height,
-			float depth) {
-		// empty for now, bitch
-		this.center.x = pos.x;
-		this.center.y = pos.y;
-		this.center.z = pos.z;
+	public Cube(Vector3f pos, float width, float height, float depth) {
+		center = new Vector3f(pos.x, pos.y, pos.z);
 		this.height = height;
 		this.width = width;
 		this.depth = depth;
@@ -270,7 +266,12 @@ public class Cube implements iCollidable, iWorldObject {
 			ARBVertexBufferObject.glBindBufferARB(ARBVertexBufferObject.GL_ARRAY_BUFFER_ARB, vboid);
 			glVertexPointer(3, GL_FLOAT, 0, 0);
 			glColorPointer(4, GL_FLOAT, 0, vbo_vertex_data.length*4);
-			GL11.glMultMatrix(new FloatBuffer());
+			float[] temp = QuatToMatrix(heading);
+			temp = ShooterGame.concatAll(temp, new float[] {0f, 0f, 0f, 1f});
+			FloatBuffer fb = BufferUtils.createFloatBuffer(16);
+			fb.put(temp);
+			fb.rewind();
+			GL11.glMultMatrix(fb);
 			GL11.glDrawArrays(GL_QUADS, 0, vbo_vertex_data.length);
 		}
 		catch (OpenGLException e)
@@ -278,6 +279,10 @@ public class Cube implements iCollidable, iWorldObject {
 			e.printStackTrace();
 		}
 		
+	}
+	public float[] QuatToMatrix(Quat4d q)
+	{
+		return new float[] {(float) (1-2*(q.x*q.x-q.z*q.z)),(float) (2*(q.x*q.y)+2*(q.w*q.z)),(float)(2*(q.x*q.z)-2*(q.w*q.y)),(float) (2*(q.x*q.y)-2*(q.w*q.z)),(float) (1-2*q.x*q.x-2*q.z*q.z),(float) (2*(q.y*q.z)+2*(q.w*q.x)),(float) (2*(q.x*q.z)+2*(q.w*q.y)),(float) (2*(q.y*q.z)-2*(q.w*q.x)),(float) (1-2*(q.x*q.x)-2*(q.y*q.y))};	
 	}
 
 	@Override
@@ -312,7 +317,7 @@ public class Cube implements iCollidable, iWorldObject {
 
 	@Override
 	public void FacePoint(Vector3f point, Vector3f Up)
-	{
+	{/*
 		Vector3f diff = new Vector3f();
 		diff.sub(position, point);
 		Vector3f Right = new Vector3f();
@@ -327,7 +332,7 @@ public class Cube implements iCollidable, iWorldObject {
 		Matrix4f rot = new Matrix4f(Right.x, Right.y, Right.z, 0, NewUp.x, NewUp.y, NewUp.z, 0, Backwards.x, Backwards.y, Backwards.z, 0, 0, 0, 0, 1);
 		Quat4d qrot = new Quat4d();
 		qrot.set(rot);
-		orientation.mul(qrot);
+		orientation.mul(qrot);*/
 	}
 
 	@Override
