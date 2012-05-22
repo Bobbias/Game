@@ -1,11 +1,15 @@
 package Shooter;
 /**
- * The PauseMenu class represents a pause menu Game State. This state may only be entered from a GameRunning state, and may return to either a GameMenu or a GameRunning state.
+ * The PauseMenu class represents a pause menu Game State. This state may only be entered from a
+ * GameRunning state, and may return to either a GameMenu or a GameRunning state.
  * @author Bobbias
  * 
  */
 public class PauseMenu implements iGameState {
 
+	/**
+	 * Pauses the GameState.
+	 */
 	@Override
 	public void Pause() {
 		// TODO Auto-generated method stub
@@ -27,7 +31,7 @@ public class PauseMenu implements iGameState {
 	@Override
 	public void HanleInput() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

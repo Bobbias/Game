@@ -12,6 +12,9 @@ public class InputManager {
 	// maybe use Sets instead?
 	ArrayList<iController> controllers;
 	ArrayList<iControllable> controllables;
+	
+	private static InputManager _instance = null;
+	
 	private static boolean exists = false;
 	/**
 	 * Creates an InputManager with a KeyboardController and MouseController
@@ -41,6 +44,15 @@ public class InputManager {
 	{
 		if (exists)
 			return null;
-		return new InputManager();
+		_instance = new InputManager();
+		return _instance;
+	}
+	/**
+	 * Returns the current instance of InputManager
+	 * @return
+	 */
+	public static InputManager getCurrentInputManager()
+	{
+		return _instance;
 	}
 }
