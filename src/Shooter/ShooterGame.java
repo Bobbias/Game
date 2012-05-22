@@ -32,6 +32,7 @@ public class ShooterGame {
 	
 	Physics gamePhysics;
 	InputManager im;
+	StateManager sm;
 	
 	int delta;
 	int fps;
@@ -229,12 +230,14 @@ public class ShooterGame {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		gamePhysics = new Physics();
+		//gamePhysics = new Physics();
 		//setup physics here
 		
 		lastfps = getTime();
 		//init graphics here
 		InitOpenGL();
+		sm = StateManager.newStateManager();
+		im = InputManager.getInputManager();
 		
 		// initialize our timer
 		lastFrame = getTime();

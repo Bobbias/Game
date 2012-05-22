@@ -37,7 +37,7 @@ public class InputManager {
 			c.HandleInput();
 		}
 	}
-	public InputManager getInputManager()
+	public static InputManager getInputManager()
 	{
 		if (exists)
 			return null;

@@ -19,7 +19,7 @@ public class StateManager
 	 * Creator method that only returns a StateManager if one has not already been instantiated. 
 	 * @return A StateManager object
 	 */
-	public StateManager newStateManager()
+	public static StateManager newStateManager()
 	{
 		if (manager_exists)
 			return null;
