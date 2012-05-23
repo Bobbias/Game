@@ -1,6 +1,7 @@
-package Shooter;
+package Shooter.Input;
 
 import java.util.ArrayList;
+
 /**
  * The InputManager is responsible for keeping track of every
  * object which is either controllable or a controller.

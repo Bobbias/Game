@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.Input;
 /**
  * Defines an interface for controller objects. Controller objects are objects
  * that represent any sort of controller which may be used to send input to

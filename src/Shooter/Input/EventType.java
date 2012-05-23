@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.Input;
 
 public enum EventType {
 	KEYBOARD_EVENT,

@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.Camera;
 
 import javax.vecmath.*;
 

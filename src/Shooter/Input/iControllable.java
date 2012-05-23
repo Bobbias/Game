@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.Input;
 /**
  * Defines an interface for controllable objects such as players, menus, etc. These 
  * @author Bobbias

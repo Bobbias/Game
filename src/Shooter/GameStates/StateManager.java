@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.GameStates;
 /**
  * Singleton object. The Sate Manager provides an interface for game states to interact either eachother, to store the required state stack etc.
  * @author Bobbias

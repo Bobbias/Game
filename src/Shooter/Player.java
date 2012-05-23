@@ -1,5 +1,8 @@
 package Shooter;
 
+import Shooter.Camera.Camera;
+import Shooter.Input.InputEvent;
+import Shooter.Input.iControllable;
 import Shooter.Ship.*;
 
 public class Player implements iControllable{

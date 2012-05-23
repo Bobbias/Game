@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.Input;
 
 import org.lwjgl.input.Keyboard;
 

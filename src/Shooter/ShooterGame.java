@@ -17,6 +17,11 @@ import org.lwjgl.input.*;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.*;
 
+import Shooter.GameStates.StateManager;
+import Shooter.Input.DummyControllable;
+import Shooter.Input.InputManager;
+import Shooter.Input.iController;
+
 import com.bulletphysics.collision.dispatch.*;
 import com.bulletphysics.dynamics.*;
 import com.bulletphysics.util.*;

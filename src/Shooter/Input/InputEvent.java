@@ -1,4 +1,4 @@
-package Shooter;
+package Shooter.Input;
 
 public class InputEvent {
 	public EventType type;

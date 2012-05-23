@@ -1,30 +1,33 @@
-package Shooter;
+package Shooter.Input;
 
 import java.util.ArrayList;
 
-import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
-public class KeyboardController implements iController{
+
+public class MouseController implements iController {
 
 	ArrayList<iControllable> controllables;
 	
-	public KeyboardController()
+	public MouseController()
 	{
 		controllables = new ArrayList<iControllable>();
 	}
 	
 	@Override
 	public void HandleInput() {
-		while (Keyboard.next())
+		// TODO Auto-generated method stub
+		InputEvent i = new InputEvent();
+		int tmp = Mouse.getEventButton();
+		if (tmp != -1)
 		{
-			InputEvent i = new InputEvent();
-			i.KeyCode = Keyboard.getEventKey();
-			i.keyState = Keyboard.getEventKeyState();
-			i.type = EventType.KEYBOARD_EVENT;
-			for (iControllable j : controllables)
-			{
-				j.HandleInput(i);
-			}
+			i.type = EventType.MOUSE_EVENT;
+			i.MouseKey = tmp;
+			i.keyState = Mouse.getEventButtonState();
+		}
+		for (iControllable j : controllables)
+		{
+			j.HandleInput(i);
 		}
 	}
 

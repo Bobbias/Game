@@ -1,4 +1,6 @@
-package Shooter;
+package Shooter.Camera;
+
+import Shooter.Player;
 
 public class Viewport {
 	private Camera cam;

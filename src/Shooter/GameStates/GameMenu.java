@@ -1,6 +1,8 @@
-package Shooter;
+package Shooter.GameStates;
 
-public class GameMain implements iGameState {
+import Shooter.iGameState;
+
+public class GameMenu implements iGameState {
 
 	@Override
 	public void Pause() {
@@ -29,7 +31,7 @@ public class GameMain implements iGameState {
 	@Override
 	public void Update() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
